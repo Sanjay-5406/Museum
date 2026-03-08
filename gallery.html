@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Museum | Collage</title>
+<link rel="stylesheet" href="styles\basic.css">
+
+<style>
+    body {
+        margin: 0;
+        padding: 0px;
+        background: #f5f6f8;
+        font-family: sans-serif;
+    }
+
+    .collage {
+        width: 1000px;
+        margin: 60px auto;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-auto-rows: 120px;   /* taller rows */
+        gap: 20px;
+    }
+
+    .collage img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 14px;
+    }
+
+    .r1 { grid-column: span 3; grid-row: span 2; }  /* BIG hero */
+    .r2 { grid-column: span 3; grid-row: span 2; }  /* BIG hero */
+    .r3 { grid-column: span 2; grid-row: span 2; }
+    .r4 { grid-column: span 4; grid-row: span 2; }
+    .r5 { grid-column: span 3; grid-row: span 2; }
+    .r6 { grid-column: span 3; grid-row: span 2; }
+
+    .collage{
+        margin-top: 60px;
+        margin-bottom: 60px;
+        overflow: visible;   /* allow image to grow outside */
+    }
+
+  
+
+
+
+
+
+
+
+
+
+
+
+    .image-box{
+        position: relative;
+        overflow: visible;   /* IMPORTANT */
+        border-radius: 14px;
+    }
+
+/* Image */
+    .image-box img{
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+        border-radius: 14px;
+
+        transition: 
+            transform 0.45s cubic-bezier(.2,.8,.2,1),
+            filter 0.4s ease;
+    }
+
+/* Overlay */
+.overlay-text{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin: 0px;
+    padding: 20px;
+    color: white;
+
+    border-radius: 14px;
+
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.75),
+        rgba(0,0,0,0.1),
+        transparent
+    );
+
+    opacity: 0;
+    transform: translateY(25px);
+    transition: 
+        opacity 0.4s ease,
+        transform 0.4s ease;
+}
+
+/* Text style */
+.overlay-text h3{
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.overlay-text p{
+    margin: 6px 0 0;
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+/* HOVER EFFECT */
+.image-box:hover{
+    z-index: 50;
+}
+
+.image-box:hover img{
+    transform: scale(1.25) translateY(-10px);
+    filter: brightness(0.8);
+}
+
+.image-box:hover .overlay-text{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+</style>
+</head>
+
+<body>
+    <div class="gallery-content">
+        <div class = "top-bar-container" style="position: unset;">
+                <div class="top-bar-title-container">
+                    <img class="home-icon" src="img\art.png" alt="">
+                    <p><a href="index.html" style="text-decoration: none; color: white;">Historic Museum</a></p>
+                </div>
+                <div class="top-bar-button-container">
+                    <button class="top-bar-button" onClick="location.href='index.html'">Home</button>
+                    <button class="top-bar-button" onClick="location.href='gallery.html'"  style="border-bottom: 4px solid rgb(228, 197, 158); font-weight: 600;">Gallery</button>
+                    <button class="top-bar-button" onClick="location.href='blogs.html'">Blogs</button>
+                    <button class="top-bar-button" onClick="location.href='aboutus.html'">About us</button>
+                </div>
+        </div>
+
+        <div class="collage">
+
+            <div class="image-box r1">
+                <img src="img/gallery/img1.jpg" alt="Ancient Sculpture">
+                <div class="overlay-text">
+                    <h3>Ancient Sculpture</h3>
+                    <p>
+                        A preserved relic from early civilizations, reflecting craftsmanship,
+                        mythology, and the artistic identity of its era.
+                    </p>
+                </div>
+            </div>
+
+            <div class="image-box r2">
+                <img src="img/gallery/img2.jpg" alt="Historic Painting">
+                <div class="overlay-text">
+                    <h3>Historic Painting</h3>
+                    <p>
+                        This masterpiece captures the cultural spirit of the Renaissance,
+                        showcasing detail, emotion, and innovation in brushwork.
+                    </p>
+                </div>
+            </div>
+
+            <div class="image-box r3">
+                <img src="img/gallery/img3.jpg" alt="Medieval Armor">
+                <div class="overlay-text">
+                    <h3>Medieval Armor</h3>
+                    <p>
+                        Crafted for protection and prestige, this armor represents the
+                        evolution of warfare and noble heritage.
+                    </p>
+                </div>
+            </div>
+
+            <div class="image-box r4">
+                <img src="img/gallery/img4.jpg" alt="Ancient Manuscript">
+                <div class="overlay-text">
+                    <h3>Ancient Manuscript</h3>
+                    <p>
+                        Handwritten centuries ago, these texts preserve stories,
+                        philosophies, and knowledge passed through generations.
+                    </p>
+                </div>
+            </div>
+
+            <div class="image-box r5">
+                <img src="img/gallery/img5.jpg" alt="Cultural Artifact">
+                <div class="overlay-text">
+                    <h3>Cultural Artifact</h3>
+                    <p>
+                        A symbol of tradition and identity, reflecting the daily
+                        life and spiritual beliefs of ancient communities.
+                    </p>
+                </div>
+            </div>
+
+            <div class="image-box r6">
+                <img src="img/gallery/img6.jpg" alt="Vintage Photography">
+                <div class="overlay-text">
+                    <h3>Vintage Photography</h3>
+                    <p>
+                        Early photographic documentation capturing moments
+                        that shaped modern history and social transformation.
+                    </p>
+                </div>
+            </div>
+
+            <div class="image-box r7">
+                <img src="img/gallery/img7.jpg" alt="Royal Portrait">
+                <div class="overlay-text">
+                    <h3>Royal Portrait</h3>
+                    <p>
+                        A regal depiction symbolizing power, elegance, and
+                        political influence from a bygone dynasty.
+                    </p>
+                </div>
+            </div>
+
+            <div class="image-box r8">
+                <img src="img/gallery/img8.jpg" alt="Architectural Model">
+                <div class="overlay-text">
+                    <h3>Architectural Model</h3>
+                    <p>
+                        A detailed representation of historical structures,
+                        revealing the brilliance of early engineering.
+                    </p>
+                </div>
+            </div>
+
+            <div class="image-box r9">
+                <img src="img/gallery/img9.jpg" alt="Ancient Coins">
+                <div class="overlay-text">
+                    <h3>Ancient Coins</h3>
+                    <p>
+                        Currency from ancient empires illustrating trade,
+                        economy, and the artistic symbols of power.
+                    </p>
+                </div>
+            </div>
+
+            <div class="image-box r10">
+                <img src="img/gallery/img10.jpg" alt="Historic Monument">
+                <div class="overlay-text">
+                    <h3>Historic Monument</h3>
+                    <p>
+                        A timeless structure standing as a tribute to cultural
+                        heritage, resilience, and architectural mastery.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div>
+                <p>Future updates</p>
+                <p>social impact</p>
+                <p>Current project</p>
+                <p>Merchandise</p>
+                <p>Collaborate</p>
+            </div>
+            <div>
+                <p>Art Submissions</p>
+                <p>NGO Initiatives</p>
+                <p>Sculpture Contract</p>
+                <p>Maintanence Tender</p>
+                <p>Catering Services</p>
+            </div>
+            <div>
+                <p>Future updates</p>
+                <p>social impact</p>
+                <p>Current project</p>
+                <p>Merchandise</p>
+                <p>Collaborate</p>
+            </div>
+            <div>
+                <p>Visitor's Guide</p>
+                <p>Map of the Museum</p>
+                <p>Online guide</p>
+                <p>Library</p>
+                <p>Official release notes</p>
+            </div>
+            <div>
+                <p>Future updates</p>
+                <p>social impact</p>
+                <p>Current project</p>
+            </div>
+        </div>
+
+        <address style="margin-top: 100px; text-align: center;">
+            <p>&copy All Copyrights claimed 2024 - 28</p>
+        </address>
+    </footer>
+
+
+
+    <script>
+        
+    </script>
+</body>
+</html>

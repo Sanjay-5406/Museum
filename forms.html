@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles\basic.css">
+    <title>Form</title>
+</head>
+<body>
+
+    <div class = "top-bar-container">
+            <div class="top-bar-title-container">
+                <img class="home-icon" src="img\art.png" alt="">
+                <p><a href="index.html" style="text-decoration: none; color: white;">Historic Museum</a></p>
+            </div>
+            <div class="top-bar-button-container">
+                <button class="top-bar-button" onClick="location.href='index.html'" style="border-bottom: 4px solid rgb(228, 197, 158); font-weight: 600;">Home</button>
+                <button class="top-bar-button" onClick="location.href='gallery.html'">Gallery</button>
+                <button class="top-bar-button" onClick="location.href='blogs.html'">Blogs</button>
+                <button class="top-bar-button" onClick="location.href='aboutus.html'">About us</button>
+            </div>
+    </div>
+
+    <button id="backBtn" onclick=" location.href = 'index.html'"> <- Back</button>
+    <div class="main-body">
+
+        <form action="" onsubmit="return verify()">
+            <div><label for="name">Name:</label><br><input type="text" id="username"></div>
+            <div><label for="dob">DOB:</label><br><input type="date" id="dob"></div>
+            <div>
+                <label for="gender" id="gender">Gender:</label><br>
+                <input type="radio" name="gender" value="male"><label for="male">Male</label>
+                <input type="radio" name="gender" value="female"><label for="female">Female</label>
+            </div>
+            <div><label for="email">email:</label><br><input type="email" id="email"></div>
+            <div><label for="password">Password:</label><br><input type="password" id="password"></div>
+            <div>
+                <label for="">Country: </label>
+                <select name="country" id="country">
+                    <option value="">Choose One</option>
+                    <option value="india" id="india">India</option>
+                    <option value="usa" id="usa">USA</option>
+                    <option value="europe" id="europe">Europe</option>
+                    <option value="other" id="other">Other</option>
+                </select>
+            </div>
+            <div>
+                <label for="accessto">Access to Facilities:</label> <br>
+                <input type="checkbox" name="access"><label for="artgallery">Art Gallery</label> <br>
+                <input type="checkbox" name="access"><label for="library">Library</label> <br>
+                <input type="checkbox" name="access"><label for="workshops">Workshops</label> <br>
+                <input type="checkbox" name="access"><label for="blogs">Exclusive Blogs</label>
+            </div>
+             <label>Signature:</label><br>
+            <canvas id="signature" width="150" height="80" style="border:1px solid black; background-color: white;"></canvas>
+            <br>
+            <button type="button" onclick="clearCanvas()">Clear Signature</button>
+
+            <br><br>
+            <div><input type="submit" value="Submit"></div>
+        </form>
+    </div>
+
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div>
+                <p>Future updates</p>
+                <p>social impact</p>
+                <p>Current project</p>
+                <p>Merchandise</p>
+                <p>Collaborate</p>
+            </div>
+            <div>
+                <p>Art Submissions</p>
+                <p>NGO Initiatives</p>
+                <p>Sculpture Contract</p>
+                <p>Maintanence Tender</p>
+                <p>Catering Services</p>
+            </div>
+            <div>
+                <p>Future updates</p>
+                <p>social impact</p>
+                <p>Current project</p>
+                <p>Merchandise</p>
+                <p>Collaborate</p>
+            </div>
+            <div>
+                <p>Visitor's Guide</p>
+                <p>Map of the Museum</p>
+                <p>Online guide</p>
+                <p>Library</p>
+                <p>Official release notes</p>
+            </div>
+            <div>
+                <p>Future updates</p>
+                <p>social impact</p>
+                <p>Current project</p>
+            </div>
+        </div>
+
+        <address style="margin-top: 100px; text-align: center;">
+            <p>&copy All Copyrights claimed 2024 - 28</p>
+        </address>
+    </footer>
+
+
+
+
+    <script>
+        function verify(){
+            let username = document.getElementById("username").value;
+            let email = document.getElementById("email").value;
+            let pwd = document.getElementById("password").value;
+            let country = document.getElementById("country").value;
+            let checkboxes = document.getElementsByName("access");
+            let checked = false;
+            let gender = document.getElementsByName("gender");
+            let gcheck = false;
+
+
+            if (username === ""){
+                alert("Please enter your name");
+                return false;
+            }
+
+
+            for (let i = 0; i < gender.length; i++){
+                if (gender[i].checked){
+                    gcheck = true;
+                    break;
+                }
+            }
+            if (!gcheck){
+                alert("Please fill in the gender");
+                return false;
+            }
+
+            if (email === ""){
+                alert("Please enter your E-mail address!")
+                return false;
+            }
+            if (pwd.length < 4){
+                alert('password length must be more than 4 characters.')
+                return false;
+            }
+            
+            if (country === ""){
+                alert("Please choose your country of origin");
+                return false;
+            }
+
+            for (let i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    checked = true;
+                    break;
+                }
+            }
+            if (!checked){
+                alert("Please choose atlest one Access Facility");
+                return false;
+            }
+
+            
+        }
+
+
+
+        const canvas = document.getElementById("signature");
+const ctx = canvas.getContext("2d");
+
+let drawing = false;
+
+canvas.addEventListener("mousedown", startDraw);
+canvas.addEventListener("mouseup", stopDraw);
+canvas.addEventListener("mousemove", draw);
+canvas.addEventListener("mouseleave", stopDraw);
+
+function startDraw(e) {
+    drawing = true;
+    ctx.beginPath();
+    ctx.moveTo(e.offsetX, e.offsetY);
+}
+
+function stopDraw() {
+    drawing = false;
+}
+
+function draw(e) {
+    if (!drawing) return;
+
+    ctx.lineWidth = 2;
+    ctx.lineCap = "round";
+    ctx.strokeStyle = "black";
+
+    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.stroke();
+}
+
+function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+
+    </script>
+    
+
+    <style>
+        .main-body{
+            margin-top: 80px;
+            margin-left: 500px;
+            margin-bottom: 200px;
+            padding: 30px;
+            display: inline-block;
+            border-radius: 20px;
+            justify-items: center;
+            background-color: rgb(211, 175, 109);
+        }
+        .top-bar-container{
+            position:unset;
+            z-index: 0;
+        }
+        #backBtn{
+            display: block;
+            margin-top: 20px;
+            margin-left: 20px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: white;
+            background-color: rgb(65, 44, 7);
+        }
+        form{
+            width: 200px;
+        }
+        form div{
+            margin-bottom: 10px;
+        }
+        input{
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        label{
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+    </style>
+</body>
+</html>
